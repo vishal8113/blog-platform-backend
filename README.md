@@ -234,14 +234,6 @@ DELETE /api/users/:id
 Authorization: Bearer <token>
 ```
 
-Response:
-```
-{
-   message: 'User deleted                           successfully',
-    note: 'All associated blogs and              comments will be deleted'
-}
-```
-
 #### 5. Update User Details
 ```http
 PUT /api/users/:id
