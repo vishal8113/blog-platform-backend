@@ -84,7 +84,62 @@ docker-compose ps
 - Configure security groups
 - Update environment variables
 
-3. Deploy Application
+3. Connect with EC2 Instance
+   ```
+   ssh -i your_key.pem ubuntu@your-ec2-ip
+   ```
+   
+4. Update System
+   ```
+   sudo apt update
+   sudo apt upgrade -y
+   ```
+   
+5. Clone the git Respository
+   ```
+   https://github.com/vishal8113/blog-platform-backend
+   ```
+
+6. Do Required Changes in .env.production file
+    ```
+    nano .env
+    ```   
+   
+7. Install PostgreSQL client
+   ```
+   sudo apt install postgresql-client
+   ```
+
+8. Install Docker
+   ```
+   sudo apt install docker.io -y
+   ```
+   
+9. Install Docker Compose
+   ```
+   sudo curl -L "https://github.com/docker/compose/releases/download/v2.24.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+   sudo chmod +x /usr/local/bin/docker-compose
+   ```
+   
+10. Add ubuntu user to docker group
+   ```
+   sudo usermod -aG docker ubuntu
+   newgrp docker
+   ```
+   
+11. Connect to RDS (replace with your endpoint)
+    ```
+    psql -h your-rds-endpoint -U postgres
+    ```
+
+12. Create Database and their Schemas
+    ```
+    CREATE DATABASE blog_db;
+    CREATE DATABASE comment_db;
+    \l
+    ```    
+
+13. Run the container
 ```
 docker-compose up -d --build
 ```
