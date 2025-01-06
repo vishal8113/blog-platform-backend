@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  user-service:
+    build:
+      context: ./user-service
+      dockerfile: Dockerfile
+    environment:
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      JWT_SECRET: ${JWT_SECRET}
+      PORT: ${PORT_USER}
+    ports:
+      - "${PORT_USER}:3000"
+    networks:
+      - backend-network
+
+  blog-service:
+    build:
+      context: ./blog-service
+      dockerfile: Dockerfile
+    environment:
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_HOST: ${DB_HOST} 
+      DB_PORT: ${DB_PORT}
+      JWT_SECRET: ${JWT_SECRET}
+      PORT: ${PORT_BLOG}
+    ports:
+      - "${PORT_BLOG}:3001"
+    networks:
+      - backend-network
+
+  comment-service:
+    build:
+      context: ./comment-service
+      dockerfile: Dockerfile
+    environment:
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      JWT_SECRET: ${JWT_SECRET}
+      PORT: ${PORT_COMMENT}
+    ports:
+      - "${PORT_COMMENT}:3002"
+    networks:
+      - backend-network
+
+networks:
+  backend-network:
+    driver: bridge
