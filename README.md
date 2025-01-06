@@ -225,6 +225,25 @@ Response:
 }
 ```
 
+#### 4. Delete User
+```http
+DELETE /api/users/:id
+```
+
+```Headers
+Authorization: Bearer <token>
+```
+
+#### 5. Update User Details
+```http
+PUT /api/users/:id
+```
+
+```Headers
+Authorization: Bearer <token>
+```
+
+
 ### Blog Service (Blog Management)
 #### 1. Create Blog Post
 ```HTTP
