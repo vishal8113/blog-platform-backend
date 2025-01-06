@@ -292,39 +292,48 @@ Response:
 - Data isolation
 - Independent scaling
 - Service autonomy
+
 **Trade-offs:**
 
 - Data duplication
 - Cross-service queries complexity
 - Eventual consistency
+  
 ### 3. Authentication
+
 **Decision:** JWT-based authentication
 
 - Stateless authentication
 - Scalable
 - Cross-domain support
+  
 **Trade-offs:**
 
 - Token size
 - Can't invalidate tokens immediately
 - Token storage security
+  
 ### 4. Comment Structure
+
 **Decision:** Flat comment structure with future nested capability
 
 - Simpler initial implementation
 - Better performance for basic use cases
 - Easier to maintain
+  
 **Trade-offs:**
 
 - Limited functionality initially
 - Future migration complexity
 - No immediate support for threaded discussions
 ### 5. Pagination
+
 **Decision:** Cursor-based pagination for blogs and comments
 
 - Consistent results with real-time updates
 - Better performance with large datasets
 - No skipped or duplicate items
+  
 **Trade-offs:**
 
 - More complex implementation
