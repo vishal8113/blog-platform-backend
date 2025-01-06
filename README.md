@@ -55,9 +55,9 @@ cd blog-platform
 ```
 
 2. Edit environment file:
-- Enter your database password in place of YOUR_DB_PASSWORD
-- Enter your database username in place of YOUR_DB_USER_NAME
-- Enter your JWT Secret in place of YOUR_JWT_SECRET
+- Enter your database password in place of YOUR_LOCAL_DB_PASSWORD
+- Enter your database username in place of YOUR_LOCAL_DB_USER_NAME
+- Enter your JWT Secret in place of YOUR_LOCAL_JWT_SECRET
 
 3. Build and start services:
 ```
@@ -69,6 +69,35 @@ docker-compose up -d --build
 docker-compose ps
 ```
 
+## Deployment
+
+### AWS Deployment
+
+1. EC2 Setup
+
+- Launch EC2 instance
+- Configure security groups
+- Install Docker & Docker Compose
+
+2. RDS Setup:
+- Create PostgreSQL instance
+- Configure security groups
+- Update environment variables
+
+3. Deploy Application
+```
+docker-compose up -d --build
+```
+
+## 🌐 Live Demo
+### User Service
+Base URL: http://3.108.124.90:3000
+
+### Blog Service
+Base URL: http://3.108.124.90:3001
+
+### Comment Service
+Base URL: http://3.108.124.90:3002
 
 
 ## API Endpoints
@@ -240,6 +269,7 @@ Response:
 ]
 ```
 
+
 ## Design Decisions and Trade-offs
 ### 1. Microservices Architecture
 **Decision:** Split the application into three separate services (User, Blog, Comment)
@@ -335,41 +365,6 @@ Response:
 - Service discovery
 - Message queues for async operations
 
-
-
-## Deployment
-
-### AWS Deployment
-
-1. EC2 Setup
-
-- Launch EC2 instance
-- Configure security groups
-- Install Docker & Docker Compose
-
-2. RDS Setup:
-- Create PostgreSQL instance
-- Configure security groups
-- Update environment variables
-
-3. Deploy Application
-```
-docker-compose -f docker-compose.yml up -d
-```
-
-## 🧪 Testing
-Run tests for each service:
-
-```
-cd user-service && npm test
-cd blog-service && npm test
-cd comment-service && npm test
-```
-
-## 📝 API Documentation
-- **User Service**: http://localhost:3000/api-docs
-- **Blog Service**: http://localhost:3001/api-docs
-- **Comment Service**: http://localhost:3002/api-docs
 
 ## 🛡️ Security Features
 - JWT Authentication
