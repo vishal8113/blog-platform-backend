@@ -310,6 +310,39 @@ Response:
 }
 ```
 
+#### 3. Get Blog (with Id)
+```HTTP
+GET /api/blogs/:id
+```
+```Headers:
+Authorization: Bearer <token>
+```
+
+#### 4. Update Blog
+```HTTP
+PUT /api/blogs/:id
+```
+```Headers:
+Authorization: Bearer <token>
+```
+
+Request:
+```
+{
+    "title": "string",
+    "content": "string"
+}
+```
+
+#### 5. Delete Blog
+```HTTP
+DELETE /api/blogs/:id
+```
+```Headers:
+Authorization: Bearer <token>
+```
+
+
 ### Comment Service (Comment Management)
 #### 1. Add Comment
 ```HTTP
