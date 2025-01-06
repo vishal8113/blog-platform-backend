@@ -122,10 +122,10 @@ docker-compose ps
    ```
    
 10. Add ubuntu user to docker group
-   ```
-   sudo usermod -aG docker ubuntu
-   newgrp docker
-   ```
+    ```
+    sudo usermod -aG docker ubuntu
+    newgrp docker
+    ```
    
 11. Connect to RDS (replace with your endpoint)
     ```
@@ -140,9 +140,9 @@ docker-compose ps
     ```    
 
 13. Run the container
-```
-docker-compose up -d --build
-```
+    ```
+    docker-compose up -d --build
+    ```
 
 ## 🌐 Live Demo
 ### User Service
