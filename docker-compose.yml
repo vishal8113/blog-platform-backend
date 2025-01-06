@@ -1,0 +1,84 @@
+version: '3.8'
+
+services:
+  database:
+    build: 
+      context: ./database-service
+      dockerfile: Dockerfile
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_MULTIPLE_DATABASES}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - backend-network
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER}"]
+      interval: 30s
+      timeout: 30s
+      retries: 3
+
+  user-service:
+    build:
+      context: ./user-service
+      dockerfile: Dockerfile
+    environment:
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_HOST: database
+      JWT_SECRET: ${JWT_SECRET}
+      PORT: ${PORT_USER}
+    ports:
+      - "${PORT_USER}:3000"
+    networks:
+      - backend-network
+    depends_on:
+      database:
+        condition: service_healthy
+
+  blog-service:
+    build:
+      context: ./blog-service
+      dockerfile: Dockerfile
+    environment:
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_HOST: database
+      JWT_SECRET: ${JWT_SECRET}
+      PORT: ${PORT_BLOG}
+    ports:
+      - "${PORT_BLOG}:3001"
+    networks:
+      - backend-network
+    depends_on:
+      database:
+        condition: service_healthy
+
+  comment-service:
+    build:
+      context: ./comment-service
+      dockerfile: Dockerfile
+    environment:
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_HOST: database
+      JWT_SECRET: ${JWT_SECRET}
+      PORT: ${PORT_COMMENT}
+    ports:
+      - "${PORT_COMMENT}:3002"
+    networks:
+      - backend-network
+    depends_on:
+      database:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  backend-network:
+    driver: bridge

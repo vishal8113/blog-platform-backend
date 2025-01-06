@@ -1,0 +1,3 @@
+CREATE DATABASE user_db;
+CREATE DATABASE blog_db;
+CREATE DATABASE comment_db;
