@@ -444,7 +444,7 @@ Response:
 - No immediate support for threaded discussions
 ### 5. Pagination
 
-**Decision:** Cursor-based pagination for blogs and comments
+**Decision:** Used Express-Paginate Library
 
 - Consistent results with real-time updates
 - Better performance with large datasets
