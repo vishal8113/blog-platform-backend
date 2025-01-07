@@ -134,6 +134,7 @@ docker-compose ps
 
 12. Create Database and their Schemas
     ```
+    CRETAE DATABASE user_db;
     CREATE DATABASE blog_db;
     CREATE DATABASE comment_db;
     \l
